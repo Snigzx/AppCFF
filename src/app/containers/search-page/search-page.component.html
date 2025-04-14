@@ -1,0 +1,56 @@
+<ion-content class="ion-padding">
+  <ion-grid>
+
+    <!-- Champ Départ -->
+    <ion-item>
+      <ion-label position="floating">Départ</ion-label>
+      <ion-input
+        [(ngModel)]="from"
+        (ionInput)="onFromChange($event.detail.value || '')"
+        (focus)="isFromFocused = true"
+        (blur)="onFromBlur()"
+      ></ion-input>
+    </ion-item>
+    <ion-list *ngIf="isFromFocused && (fromSuggestions$ | async)?.length">
+      <ion-item *ngFor="let suggestion of fromSuggestions$ | async" (click)="selectFromSuggestion(suggestion.label)">
+        {{ suggestion.label }}
+      </ion-item>
+    </ion-list>
+
+    <!-- Champ Arrivée -->
+    <ion-item>
+      <ion-label position="floating">Arrivée</ion-label>
+      <ion-input
+        [(ngModel)]="to"
+        (ionInput)="onToChange($event.detail.value || '')"
+        (focus)="isToFocused = true"
+        (blur)="onToBlur()"
+      ></ion-input>
+    </ion-item>
+    <ion-list *ngIf="isToFocused && (toSuggestions$ | async)?.length">
+      <ion-item *ngFor="let suggestion of toSuggestions$ | async" (click)="selectToSuggestion(suggestion.label)">
+        {{ suggestion.label }}
+      </ion-item>
+    </ion-list>
+
+    <!-- Date -->
+    <ion-item>
+      <ion-label position="floating">Date</ion-label>
+      <ion-input [(ngModel)]="date" type="date"></ion-input>
+    </ion-item>
+
+    <!-- Heure -->
+    <ion-item>
+      <ion-label position="floating">Heure</ion-label>
+      <ion-input [(ngModel)]="time" type="time"></ion-input>
+    </ion-item>
+
+    <!-- Bouton Rechercher -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-button expand="full" (click)="search()">Chercher</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

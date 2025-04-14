@@ -1,0 +1,8 @@
+.autocomplete-list {
+  max-height: 200px;        // Limite la hauteur
+  overflow-y: auto;         // Active le scroll si la liste dépasse
+  border: 1px solid #ccc;   // Optionnel : un petit bord propre
+  border-radius: 8px;       // Coins arrondis
+  background: white;        // Fond blanc au cas où
+  z-index: 1000;            // Pour être au-dessus des autres éléments si besoin
+}

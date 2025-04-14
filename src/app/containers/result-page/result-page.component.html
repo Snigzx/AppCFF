@@ -1,0 +1,20 @@
+<ion-list *ngIf="response$ | async as result">
+  <ng-container *ngIf="result && result.connections && result.connections.length > 0; else noResult">
+
+    <ion-item *ngFor="let connection of result.connections">
+      <ion-label>
+        <h2>{{ connection.from }} → {{ connection.to }}</h2>
+        <p>Départ : {{ connection.departure }}</p>
+        <p>Arrivée : {{ connection.arrival }}</p>
+        <p>Durée : {{ connection.duration }} min</p>
+      </ion-label>
+    </ion-item>
+
+  </ng-container>
+</ion-list>
+
+<ng-template #noResult>
+  <ion-item>
+    <ion-label>Aucun trajet trouvé</ion-label>
+  </ion-item>
+</ng-template>
